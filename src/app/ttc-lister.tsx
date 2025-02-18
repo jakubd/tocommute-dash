@@ -28,13 +28,7 @@ export default function TTCLister({givenTTR}: {givenTTR?: TTCApiRoot}) {
                     <span>Routes Alerts: {TTR.routes.length}</span>
                     <div className="mx-4">
                         {TTR.routes.map((item, idx) => (
-                           <p key = {idx}><span className="font-bold">{item.severity}</span>: {item.route} : {item.title}</p> 
-                        ))}
-                    </div>
-                    <span>Accessiblity Alerts: {TTR.accessibility.length}</span>
-                    <div className="mx-4">
-                        {TTR.accessibility.map((item, idx) => (
-                           <span key = {idx}><span className="font-bold">{item.severity}</span>: {item.route} : {item.title}</span> 
+                           <p key = {idx}><span className="font-bold">{item.severity}</span>: <span className="border-2 border-solid">{item.route}</span> {item.title}</p> 
                         ))}
                     </div>
                 </ul>
