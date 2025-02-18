@@ -1,3 +1,3 @@
-# nextjs-play
+# Toronto Commuter Dash
 
-Playground for Next.JS + TypeScript + Tailwind.css + React
+A simple dashboard of things that a commuter might want to see before leaving.
