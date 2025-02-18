@@ -34,7 +34,7 @@ export default function TTCLister({givenTTR}: {givenTTR?: TTCApiRoot}) {
                     <span>Accessiblity Alerts: {TTR.accessibility.length}</span>
                     <div className="mx-4">
                         {TTR.accessibility.map((item, idx) => (
-                           <span key = {idx}><span className="font-bold">{item.severity}</span>: {item.title}</span> 
+                           <span key = {idx}><span className="font-bold">{item.severity}</span>: {item.route} : {item.title}</span> 
                         ))}
                     </div>
                 </ul>
