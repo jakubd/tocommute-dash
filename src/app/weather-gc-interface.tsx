@@ -1,4 +1,4 @@
-export type GCWeatherRoot = GCWeatherRoot2[]
+export type GCWeatherAPIRoot = GCWeatherRoot2[]
 
 export interface GCWeatherRoot2 {
   cgndb: string

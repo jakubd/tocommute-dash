@@ -5,7 +5,7 @@ import Label from './label'
 import { TTCApiRoot } from './ttc-api-interface';
 import TTCLister from './ttc-lister';
 import WeatherGCEmbed from './weather-gc-embed';
-import { GCWeatherRoot } from './weather-interface';
+import { GCWeatherAPIRoot } from './weather-gc-interface';
 
 
 export default function MainPage() {
@@ -16,7 +16,7 @@ export default function MainPage() {
   console.log(TTCRoot);
 
   const { data: weather_data} = useSWR('https://corsproxy.io/?https://weather.gc.ca/api/app/en/Location/43.655,-79.383?type=city', fetcher);
-  const WeatherRoot: GCWeatherRoot = weather_data;
+  const WeatherRoot: GCWeatherAPIRoot = weather_data;
   console.log(WeatherRoot);
   
 
