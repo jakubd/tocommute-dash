@@ -1,0 +1,25 @@
+import { GCWeatherAPIRoot } from "./weather-gc-interface";
+
+export default function WeatherDailyView({givenWAR}: {givenWAR?: GCWeatherAPIRoot}){
+    if (!givenWAR) {
+        return(
+            <div className="mx-auto m-4 flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+            <div>
+                <ul>
+                    <li>Loading Daily Data...</li>
+                </ul>
+            </div>
+            </div>
+        );
+    } else {
+        return(
+            <div className="mx-auto m-4 flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+            <div>
+                <ul>
+                    <li>Loaded Daily Weather</li>
+                </ul>
+            </div>
+            </div>
+        );
+    }
+}
