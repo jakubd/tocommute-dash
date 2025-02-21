@@ -4,6 +4,20 @@ interface RouteAlert {
     route: string
     title: string
     severity: string
+    sevNum: number
+}
+
+function sevStringToNumber(givenSeverityString: string) : number {
+    switch(givenSeverityString) {
+        case "Minor":
+            return 1;
+        case "Major":
+            return 2;
+        case "Critical":
+            return 3;
+        default:
+            return 0;
+    }
 }
 
 // TTCRoute[] has a lot of stuff we don't need so this converts those 
@@ -13,6 +27,7 @@ function SimplifyRouteData(givenRoutes: TTCRoute[]) : Array<RouteAlert>{
         route: thisRoute.route,
         title: thisRoute.title,
         severity: thisRoute.severity,
+        sevNum: sevStringToNumber(thisRoute.severity),
     }));
 }
 
@@ -40,6 +55,7 @@ export default function TTCLister({givenTTR}: {givenTTR?: TTCApiRoot}) {
 
         const TTR = structuredClone(givenTTR);
         const rts = filterRoutes(SimplifyRouteData(TTR.routes));
+        console.log(rts);
 
         return(
             <div className="mx-auto m-4 flex max-w-3xl items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
