@@ -24,7 +24,7 @@ export default function TTCLister({givenRoutes}: {givenRoutes?: Array<RouteAlert
                            <p key = {idx}><span className="font-bold">{item.severity}</span>: <span className="border-2 border-solid rounded-md bg-red-600 m-1">{item.route}</span> {item.title}</p> 
                         ))}
                     </div>
-                    <li>source: <a href="https://www.ttc.ca/">ttc.ca</a></li>
+                    <li className="italic">source: <a href="https://www.ttc.ca/">ttc.ca</a></li>
                 </ul>
             </div>
             </div>

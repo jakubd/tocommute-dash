@@ -7,9 +7,8 @@ import TTCLister from './ttc-lister';
 import { GCWeatherAPIRoot } from './weather-gc-interface';
 import WeatherDailyView from './weather-daily-view';
 import WeatherHourlyView from './weather-hourly-view';
-import WeatherGCEmbed from './weather-gc-embed';
 import { filterRoutes, SimplifyRouteData } from './ttc-data-handle';
-import { extractDailyForcecast } from './weather-data-handle';
+import { extractDailyForcecast, trimDailyForcast } from './weather-data-handle';
 
 const DEBUG = true;
 const CORSProxy = "https://corsproxy.io/?url=";
@@ -30,7 +29,7 @@ export default function MainPage() {
   // GC Weather Data Fetch
   const { data: weather_data} = useSWR(CORSProxy + 'https://weather.gc.ca/api/app/en/Location/43.655,-79.383?type=city', fetcher);
   const WeatherRoot: GCWeatherAPIRoot = weather_data;
-  const DailyForceast = WeatherRoot? extractDailyForcecast(WeatherRoot): undefined;
+  const DailyForceast = WeatherRoot? trimDailyForcast(extractDailyForcecast(WeatherRoot)): undefined;
   if (DEBUG) {
     console.log(WeatherRoot);
   }
@@ -42,10 +41,8 @@ export default function MainPage() {
         <Label labelText="TTC Live Alerts" labelSubText=""/>
         <TTCLister givenRoutes={Routes} />
         <Label labelText="Weather" labelSubText=""/>
-        <WeatherGCEmbed />
         <WeatherDailyView givenWAR={DailyForceast} />
         <WeatherHourlyView givenWAR={WeatherRoot} />
-
     </>
   );
 }
