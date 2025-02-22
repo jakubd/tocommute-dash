@@ -9,6 +9,7 @@ import WeatherDailyView from './weather-daily-view';
 import WeatherHourlyView from './weather-hourly-view';
 import WeatherGCEmbed from './weather-gc-embed';
 import { filterRoutes, SimplifyRouteData } from './ttc-data-handle';
+import { exctractDailyForecast } from './weather-data-handle';
 
 const DEBUG = true;
 const CORSProxy = "https://corsproxy.io/?url=";
@@ -32,6 +33,7 @@ export default function MainPage() {
   if (DEBUG) {
     console.log(WeatherRoot);
   }
+  exctractDailyForecast(WeatherRoot);
 
   
   return (
@@ -40,8 +42,9 @@ export default function MainPage() {
         <TTCLister givenRoutes={Routes} />
         <Label labelText="Weather" labelSubText=""/>
         <WeatherGCEmbed />
-        <WeatherHourlyView givenWAR={WeatherRoot} />
         <WeatherDailyView givenWAR={WeatherRoot} />
+        <WeatherHourlyView givenWAR={WeatherRoot} />
+
     </>
   );
 }
