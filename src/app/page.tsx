@@ -30,10 +30,11 @@ export default function MainPage() {
   // GC Weather Data Fetch
   const { data: weather_data} = useSWR(CORSProxy + 'https://weather.gc.ca/api/app/en/Location/43.655,-79.383?type=city', fetcher);
   const WeatherRoot: GCWeatherAPIRoot = weather_data;
+  const DailyForceast = WeatherRoot? exctractDailyForecast(WeatherRoot): undefined;
   if (DEBUG) {
     console.log(WeatherRoot);
   }
-  exctractDailyForecast(WeatherRoot);
+
 
   
   return (
@@ -42,7 +43,7 @@ export default function MainPage() {
         <TTCLister givenRoutes={Routes} />
         <Label labelText="Weather" labelSubText=""/>
         <WeatherGCEmbed />
-        <WeatherDailyView givenWAR={WeatherRoot} />
+        <WeatherDailyView givenWAR={DailyForceast} />
         <WeatherHourlyView givenWAR={WeatherRoot} />
 
     </>
