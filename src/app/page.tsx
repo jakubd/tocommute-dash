@@ -11,13 +11,13 @@ import WeatherGCEmbed from './weather-gc-embed';
 import { filterRoutes, SimplifyRouteData } from './ttc-data-handle';
 
 const DEBUG = true;
-
+const CORSProxy = "https://corsproxy.io/?url=";
 
 export default function MainPage() {
   
   // TTC data fetch
   const fetcher = (url: string) => fetch(url, {mode: 'cors'}).then((res) => res.json());
-  const { data: ttc_data } = useSWR('https://corsproxy.io/?url=https://alerts.ttc.ca/api/alerts/live-alerts', fetcher);
+  const { data: ttc_data } = useSWR(CORSProxy + 'https://alerts.ttc.ca/api/alerts/live-alerts', fetcher);
   const TTCRoot: TTCApiRoot = ttc_data;
   const Routes = TTCRoot? filterRoutes(SimplifyRouteData(TTCRoot.routes)): undefined;
 
@@ -27,7 +27,7 @@ export default function MainPage() {
   }
 
   // GC Weather Data Fetch
-  const { data: weather_data} = useSWR('https://corsproxy.io/?https://weather.gc.ca/api/app/en/Location/43.655,-79.383?type=city', fetcher);
+  const { data: weather_data} = useSWR(CORSProxy + 'https://weather.gc.ca/api/app/en/Location/43.655,-79.383?type=city', fetcher);
   const WeatherRoot: GCWeatherAPIRoot = weather_data;
   if (DEBUG) {
     console.log(WeatherRoot);
