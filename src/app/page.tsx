@@ -41,10 +41,9 @@ export default function MainPage() {
     <>
         <Label labelText="TTC Live Alerts" labelSubText=""/>
         <TTCLister givenRoutes={Routes} />
-        <Label labelText="Daily Forcecast" labelSubText=""/>
-        <WeatherDailyView givenWAR={DailyForceast} />
-        <Label labelText="Hourly Forcecast" labelSubText=""/>
-        <WeatherHourlyView givenWAR={WeatherRoot} />
+        <Label labelText="Forcecast" labelSubText=""/>
+        <WeatherDailyView givenDailyForcecastArr={DailyForceast} />
+        <WeatherHourlyView givenHourlyForecastArr={HourlyForecast} />
     </>
   );
 }

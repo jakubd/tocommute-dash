@@ -46,5 +46,5 @@ export function extractDailyForcecast(givenWAR: GCWeatherAPIRoot): Array<DailyWe
 }
 
 export function trimDailyForcast(givenDailyForcecastArr: Array<DailyWeatherEntry>): Array<DailyWeatherEntry> {
-    return givenDailyForcecastArr.slice(0,4);
+    return givenDailyForcecastArr.slice(0,2);
 }
