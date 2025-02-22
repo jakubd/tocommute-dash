@@ -19,10 +19,11 @@ export default function MainPage() {
   const fetcher = (url: string) => fetch(url, {mode: 'cors'}).then((res) => res.json());
   const { data: ttc_data } = useSWR('https://corsproxy.io/?url=https://alerts.ttc.ca/api/alerts/live-alerts', fetcher);
   const TTCRoot: TTCApiRoot = ttc_data;
-  const rts = TTCRoot? filterRoutes(SimplifyRouteData(TTCRoot.routes)): undefined
+  const Routes = TTCRoot? filterRoutes(SimplifyRouteData(TTCRoot.routes)): undefined;
 
   if (DEBUG) {
-    console.log(rts);
+    console.log(TTCRoot)
+    console.log(Routes);
   }
 
   // GC Weather Data Fetch
@@ -36,7 +37,7 @@ export default function MainPage() {
   return (
     <>
         <Label labelText="TTC Live Alerts" labelSubText=""/>
-        <TTCLister givenRoutes={rts} />
+        <TTCLister givenRoutes={Routes} />
         <Label labelText="Weather" labelSubText=""/>
         <WeatherGCEmbed />
         <WeatherHourlyView givenWAR={WeatherRoot} />

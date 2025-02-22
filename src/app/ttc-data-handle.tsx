@@ -35,9 +35,9 @@ export function sevStringToNumber(givenSeverityString: string) : number {
   
   // TTC API has weird WEBSITE alerts that are for route 9999 so lets remove those
   export function filterRoutes(givenRoutes: Array<RouteAlert>) {
-    for (let i = 0; i < givenRoutes.length; i++) {
-        if (givenRoutes[i].route == "9999")
-            givenRoutes.splice(i, 1);
+    for (let i = givenRoutes.length - 1; i >= 0; i--) {
+        if (givenRoutes[i].route === "9999")
+            console.log(givenRoutes.splice(i, 1));
     }
     return givenRoutes;
   }
