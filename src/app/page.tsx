@@ -8,7 +8,7 @@ import { GCWeatherAPIRoot } from './weather-gc-interface';
 import WeatherDailyView from './weather-daily-view';
 import WeatherHourlyView from './weather-hourly-view';
 import { filterRoutes, SimplifyRouteData } from './ttc-data-handle';
-import { extractDailyForcecast, trimDailyForcast } from './weather-data-handle';
+import { extractDailyForcecast, extractHourlyForecast, trimDailyForcast, trimHourlyForecast } from './weather-data-handle';
 
 const DEBUG = true;
 const CORSProxy = "https://corsproxy.io/?url=";
@@ -30,18 +30,20 @@ export default function MainPage() {
   const { data: weather_data} = useSWR(CORSProxy + 'https://weather.gc.ca/api/app/en/Location/43.655,-79.383?type=city', fetcher);
   const WeatherRoot: GCWeatherAPIRoot = weather_data;
   const DailyForceast = WeatherRoot? trimDailyForcast(extractDailyForcecast(WeatherRoot)): undefined;
+  const HourlyForecast = WeatherRoot? trimHourlyForecast(extractHourlyForecast(WeatherRoot)): undefined;
+
   if (DEBUG) {
-    console.log(WeatherRoot);
+    console.log(HourlyForecast);
   }
 
 
-  
   return (
     <>
         <Label labelText="TTC Live Alerts" labelSubText=""/>
         <TTCLister givenRoutes={Routes} />
-        <Label labelText="Weather" labelSubText=""/>
+        <Label labelText="Daily Forcecast" labelSubText=""/>
         <WeatherDailyView givenWAR={DailyForceast} />
+        <Label labelText="Hourly Forcecast" labelSubText=""/>
         <WeatherHourlyView givenWAR={WeatherRoot} />
     </>
   );

@@ -4,11 +4,8 @@ export interface HourlyWeatherEntry {
     date: string
     time: string
     temp: string
-    condition: string
+    text: string
     precip: string
-    wind_dir: string
-    wind_gust: string
-    wind_speed: string
 }
 
 export interface DailyWeatherEntry {
@@ -17,9 +14,23 @@ export interface DailyWeatherEntry {
     precip: string
 }
 
-// export function extractHourlyForecast(givenWAR: GCWeatherAPIRoot) : Array<HourlyWeatherEntry> {
+export function extractHourlyForecast(givenWAR: GCWeatherAPIRoot) : Array<HourlyWeatherEntry> {
+    const toRet: Array<HourlyWeatherEntry> = []; 
+    givenWAR[0].hourlyFcst.hourly.forEach((item) => {
+        toRet.push({
+            date: item.date,
+            time: item.time,
+            temp: item.temperature.metric,
+            text: item.condition,
+            precip: item.precip,
+        })
+    });
+    return toRet;
+}
 
-// }
+export function trimHourlyForecast(givenHourlyForecast: Array<HourlyWeatherEntry>): Array<HourlyWeatherEntry> {
+    return givenHourlyForecast.slice(0,9);
+}
 
 export function extractDailyForcecast(givenWAR: GCWeatherAPIRoot): Array<DailyWeatherEntry>  {
     const toRet: Array<DailyWeatherEntry> = []; 
