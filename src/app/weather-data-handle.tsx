@@ -21,7 +21,7 @@ export interface DailyWeatherEntry {
 
 // }
 
-export function exctractDailyForecast(givenWAR: GCWeatherAPIRoot): Array<DailyWeatherEntry>  {
+export function extractDailyForcecast(givenWAR: GCWeatherAPIRoot): Array<DailyWeatherEntry>  {
     const toRet: Array<DailyWeatherEntry> = []; 
     givenWAR[0].dailyFcst.daily.forEach((item) => {
         toRet.push({
