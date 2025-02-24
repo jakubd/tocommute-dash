@@ -10,7 +10,7 @@ import WeatherHourlyView from './weather-hourly-view';
 import { filterRoutes, SimplifyRouteData } from './ttc-data-handle';
 import { extractDailyForcecast, extractHourlyForecast, trimDailyForcast, trimHourlyForecast } from './weather-data-handle';
 
-const DEBUG = true;
+const DEBUG = false;
 const CORSProxy = "https://corsproxy.io/?url=";
 
 export default function MainPage() {
@@ -33,7 +33,9 @@ export default function MainPage() {
   const HourlyForecast = WeatherRoot? trimHourlyForecast(extractHourlyForecast(WeatherRoot)): undefined;
 
   if (DEBUG) {
+    console.log(WeatherRoot);
     console.log(HourlyForecast);
+    console.log(DailyForceast);
   }
 
 

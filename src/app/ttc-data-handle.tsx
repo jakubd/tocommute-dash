@@ -37,7 +37,7 @@ export function sevStringToNumber(givenSeverityString: string) : number {
   export function filterRoutes(givenRoutes: Array<RouteAlert>) {
     for (let i = givenRoutes.length - 1; i >= 0; i--) {
         if (givenRoutes[i].route === "9999")
-            console.log(givenRoutes.splice(i, 1));
+            givenRoutes.splice(i, 1);
     }
     return givenRoutes;
   }

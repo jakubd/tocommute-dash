@@ -10,6 +10,7 @@ export interface HourlyWeatherEntry {
 
 export interface DailyWeatherEntry {
     date: string
+    temp: string
     text: string
     precip: string
 }
@@ -37,6 +38,7 @@ export function extractDailyForcecast(givenWAR: GCWeatherAPIRoot): Array<DailyWe
     givenWAR[0].dailyFcst.daily.forEach((item) => {
         toRet.push({
             date: item.date,
+            temp: item.temperature.metric,
             text: item.text,
             precip: item.precip,
 
