@@ -30,7 +30,7 @@ export function extractHourlyForecast(givenWAR: GCWeatherAPIRoot) : Array<Hourly
 }
 
 export function trimHourlyForecast(givenHourlyForecast: Array<HourlyWeatherEntry>): Array<HourlyWeatherEntry> {
-    return givenHourlyForecast.slice(0,9);
+    return givenHourlyForecast.slice(0,11);
 }
 
 export function extractDailyForcecast(givenWAR: GCWeatherAPIRoot): Array<DailyWeatherEntry>  {
