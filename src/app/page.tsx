@@ -9,7 +9,6 @@ import WeatherDailyView from './weather-daily-view';
 import WeatherHourlyView from './weather-hourly-view';
 import { filterRoutes, SimplifyRouteData } from './ttc-data-handle';
 import { extractDailyForcecast, extractHourlyForecast, trimDailyForcast, trimHourlyForecast } from './weather-data-handle';
-import { Analytics } from "@vercel/analytics/react"
 
 const DEBUG = false;
 const CORSProxy = "https://corsproxy.io/?url=";
@@ -47,7 +46,6 @@ export default function MainPage() {
         <Label labelText="Forcecast" labelSubText=""/>
         <WeatherDailyView givenDailyForcecastArr={DailyForceast} />
         <WeatherHourlyView givenHourlyForecastArr={HourlyForecast} />
-        <Analytics/>
     </>
   );
 }
