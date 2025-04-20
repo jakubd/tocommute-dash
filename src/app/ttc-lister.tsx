@@ -1,4 +1,3 @@
-import { internalMutate } from "swr/_internal";
 import { RouteAlert } from "./ttc-data-handle";
 
 
@@ -16,7 +15,7 @@ export default function TTCLister({givenRoutes}: {givenRoutes?: Array<RouteAlert
     } else {
 
         const icon = givenRoutes.map((item, idx) => {
-            let iconpack = [];
+            const iconpack = [];
             if (item.serviceType === 0) {
                 iconpack[idx] = "Ⓜ️"
             } else if (item.serviceType === 1) {
