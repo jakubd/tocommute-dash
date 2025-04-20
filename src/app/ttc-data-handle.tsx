@@ -2,11 +2,18 @@ import { TTCRoute } from "./ttc-api-interface";
 
 // The Simplified Route Alert that is extracted from the API
 
+enum ServiceType {
+  Subway,
+  Bus,
+  Streetcar
+}
+
 export interface RouteAlert {
   route: string
   title: string
   severity: string
   sevNum: number
+  serviceType: ServiceType
 }
 
 export function sevStringToNumber(givenSeverityString: string) : number {
@@ -21,6 +28,16 @@ export function sevStringToNumber(givenSeverityString: string) : number {
             return 0;
     }
   }
+
+  function routeToType(givenRoute: string): ServiceType {
+    if (givenRoute === "1" || givenRoute === "2") {
+      return ServiceType.Subway;
+    } else if (givenRoute.startsWith("50")) {
+      return ServiceType.Streetcar;
+    } else {
+      return ServiceType.Bus;
+    }
+  }
   
   // TTCRoute[] has a lot of stuff we don't need so this converts those 
   // entries to the simpler "RouteAlert" type which is only the junk we need.
@@ -30,6 +47,7 @@ export function sevStringToNumber(givenSeverityString: string) : number {
         title: thisRoute.title,
         severity: thisRoute.severity,
         sevNum: sevStringToNumber(thisRoute.severity),
+        serviceType: routeToType(thisRoute.route),
     }));
   }
   
