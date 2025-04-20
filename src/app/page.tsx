@@ -38,7 +38,6 @@ export default function MainPage() {
     console.log(DailyForceast);
   }
 
-
   return (
     <>
         <Label labelText="TTC Live Alerts" labelSubText=""/>
