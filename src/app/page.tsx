@@ -10,11 +10,13 @@ import WeatherHourlyView from './weather-hourly-view';
 import { filterRoutes, SimplifyRouteData } from './ttc-data-handle';
 import { extractDailyForcecast, extractHourlyForecast, trimDailyForcast, trimHourlyForecast } from './weather-data-handle';
 
-const DEBUG = false;
-const CORSProxy = "https://corsproxy.io/?url=";
+const DEBUG = true;
+
+const CORS_API_KEY = process.env.CORS_API_KEY;
+const CORSProxy = "https://corsproxy.io/?key=" + CORS_API_KEY + "&url=";
 
 export default function MainPage() {
-  
+
   // TTC data fetch
   const fetcher = (url: string) => fetch(url, {mode: 'cors'}).then((res) => res.json());
   const { data: ttc_data } = useSWR(CORSProxy + 'https://alerts.ttc.ca/api/alerts/live-alerts', fetcher);
@@ -38,8 +40,7 @@ export default function MainPage() {
     console.log(DailyForceast);
   }
 
-  return (
-    <>
+  return (<>
         <Label labelText="TTC Live Alerts" labelSubText=""/>
         <TTCLister givenRoutes={Routes} />
         <Label labelText="Forcecast" labelSubText=""/>
