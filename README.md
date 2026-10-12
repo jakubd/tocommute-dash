@@ -1,5 +1,7 @@
 # TOcommute Dash
 
+This project is inactive - I can't find a free CORS Proxy and everyone charges now
+
 Deployed at: https://tocommute-dash.vercel.app/
 
 A simple dashboard of things that a Toronto commuter might want to see before leaving.  Consisting of active TTC transit alerts and the current weather. 
